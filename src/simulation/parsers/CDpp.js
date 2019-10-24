@@ -8,7 +8,6 @@ import Parser from "./parser.js";
 import Palette from '../palette.js';
 import ChunkReader from '../../components/chunkReader.js';
 import Simulation from '../simulation.js';
-import Message from '../message.js';
 
 
 export default class CDpp extends Parser {
@@ -26,6 +25,7 @@ export default class CDpp extends Parser {
 		super(fileList);
 		this.frames = [];
 		this.index = {};
+		this.models = {};
 	}
 
 	
@@ -58,11 +58,11 @@ export default class CDpp extends Parser {
 	ParseTasks() {		
 		var defs = [];
 		
-		if (this.files.val) defs.push(Sim.ReadFile(this.files.val, this.ParseValFile));
+		if (this.files.val) defs.push(Sim.ReadFile(this.files.val, this.ParseValFile.bind(this)));
 		if (this.files.pal) defs.push(Sim.ReadFile(this.files.pal, this.ParsePalFile));
 		
 		defs.push(this.ParseLogFile());
-		
+
 		return defs;
 	}
 	
@@ -78,6 +78,10 @@ export default class CDpp extends Parser {
 	
 	GetFrames() {
 		return this.frames;
+	}
+
+	GetModels() {
+		return this.models;
 	}
 	
 	ParsePalFile(f) {	
@@ -138,12 +142,13 @@ export default class CDpp extends Parser {
 			var frame = this.index[idx];
 			
 			if (!frame) {
-				frame = new Frame([0,0,0,0]);	
+				frame = new Frame(idx);	
 				this.index[idx] = frame;
 				this.frames.push(frame);
 			}
 
 			frame.AddTransition(model, v);
+
 
 		}.bind(this));
 		//return data;
@@ -219,12 +224,14 @@ export default class CDpp extends Parser {
 			var frame = this.index[idx];
 			
 			if (!frame) {
-				frame = new Frame(time);	
+				frame = new Frame(idx);	
 				this.index[idx] = frame;
 				this.frames.push(frame);
 			}
 
 			frame.AddTransition(model, v);
+	
+			this.models[model]=model;
 
 		}.bind(this));
 	}

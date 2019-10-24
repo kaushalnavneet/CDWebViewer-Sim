@@ -43,7 +43,7 @@ export default class Frame {
 		var reverse = new Frame(this.time)
 		
 		Array.ForEach(this.transitions, function(t) {
-			reverse.AddTransition(t.Coord, t.Value - t.Diff, t.Diff);
+			reverse.AddTransition(t.Id, t.Value - t.Diff, t.Diff);
 		})
 		
 		return reverse;
@@ -53,9 +53,9 @@ export default class Frame {
 		for (var i = 0; i < this.Length; i++) {
 			var t = this.Transition(i);
 			 
-			t.Diff = t.Value - state.GetValue(t.X, t.Y, t.Z);
+			t.Diff = t.Value - state.GetValue(t.Id);
 			
-			state.SetValue(t.X, t.Y, t.Z, t.Value);
+			state.SetValue(t.Id, t.Value);
 		}
 	}
 }

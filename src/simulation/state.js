@@ -4,26 +4,26 @@ import Array from '../utils/array.js';
 
 export default class State { 
 
-	constructor(i, grid) {
+	constructor(i, model) {
 		this.i = i;
-		this.grid = grid;
+		this.model = model;
 	}
 	
 	Clone(){
-		return new State(this.i, Array.Clone(this.grid));
+		return new State(this.i, Array.Clone(this.model));
 	}
 	
-	GetValue(x, y, z) {
-		return this.grid[x][y][z];
+	GetValue(Id) {
+		return this.model[Id];
 	}
 	
-	SetValue(x, y, z, value) {
-		this.grid[x][y][z] = value;
+	SetValue(Id, value) {
+		this.model[Id] = value;
 	}
 	
 	ApplyTransitions(frame) {
-		Array.ForEach(frame.transitions, function(t) {												
-			this.SetValue(t.X, t.Y, t.Z, t.Value);
+		Array.ForEach(frame.transitions, function(t) {
+			this.SetValue(t.Id, t.Value);
 		}.bind(this));
 		
 		this.i++;
@@ -31,29 +31,20 @@ export default class State {
 	
 	RollbackTransitions(frame) {
 		Array.ForEach(frame.transitions, function(t) {
-			var value = this.GetValue(t.X, t.Y, t.Z) - t.Diff;
+			var value = this.GetValue(t.Id) - t.Diff;
 			
-			this.SetValue(t.X, t.Y, t.Z, value);
+			this.SetValue(t.Id, value);
 		}.bind(this));
 		
 		this.i--;
 	}
 	
 	static Zero(size) {
-		var grid = [];
-		
-		for (var i = 0; i < size.x; i++) {
-			grid.push([]);
-			
-			for (var j = 0; j < size.y; j++) {
-				grid[i].push([]);
-			
-				for (var k = 0; k < size.z; k++) {
-					grid[i][j].push(0);
-				}
-			}
+		var model = [];
+		for (var i = 0; i < size; i++) {
+			model.push([]);
 		}
-		
-		return new State(-1, grid);
+			
+		return new State(-1, model);
 	}
 }

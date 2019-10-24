@@ -17,8 +17,8 @@ export default class SimulationInfo {
 	get NFrames() { return this.nFrames; }
 	set NFrames(value) { this.nFrames = value; }
 	
-	get NTransitions() { return this.nTransitions; }
-	set NTransitions(value) { this.nTransitions = value; }
+	//get NTransitions() { return this.nTransitions; }
+	//set NTransitions(value) { this.nTransitions = value; }
 	
 	get LastFrame() { return this.lastFrame; }
 	set LastFrame(value) { this.lastFrame = value; }
@@ -33,16 +33,24 @@ export default class SimulationInfo {
 		this.lastFrame = null;
 	}
 	
-	Load(simulation, messages, parser) {
+	Load(simulation, parser) {
 		this.Simulator = parser.Type;
 		this.Name = parser.ModelName;
 		this.Files = parser.FileNames;
 		this.LastFrame = simulation.LastFrame().id;
 		this.NFrames = simulation.frames.length;
-		this.NTransitions = messages.length;
+		//this.NTransitions = messages.length;
 		
-		var t = simulation.FirstFrame().Last();
-		this.Size = { x:t.X + 1, y:t.Y + 1, z:t.Z + 1 };
+		var t = simulation.FirstFrame().Last().id;
+		if(t.search("-") != -1){
+			t = t.split("-");
+			this.Size = { x:parseInt(t[0]) + 1, y:parseInt(t[1]) + 1, z:parseInt(t[2]) + 1 };
+		}
+		else{
+			//Code has to go here to handle DEVS atomic models
+			this.Size = parseInt(t) + 1;
+		}
+
 	}
 	
 	Configured() {
@@ -55,8 +63,13 @@ export default class SimulationInfo {
 	
 	SizeAsString() {
 		if (!this.size) return null;
-	
-		return `${this.size.x}, ${this.size.y}, ${this.size.z}`;
+		if(this.size.hasOwnProperty('x')){
+			return `${this.size.x}, ${this.size.y}, ${this.size.z}`;
+		}
+		else{
+			return `${this.size}`;
+		}
+
 	}
 	
 	FilesAsString() {		

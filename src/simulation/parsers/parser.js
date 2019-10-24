@@ -59,6 +59,9 @@ export default class Parser extends Evented {
 	GetFrames() {
 		throw new Error("Parsers must implement a GetFrames() function");
 	}
+	GetModels() {
+		throw new Error("Parsers must implement a GetModels() function");
+	}
 	
 	// GetConfig() {
 	//	return this.files.cfg ? this.files.cfg.content : null;
@@ -79,6 +82,7 @@ export default class Parser extends Evented {
 				// config : this.GetConfig(),
 				frames : this.GetFrames(),
 				palette : this.GetPalette(),
+				models : this.GetModels(),
 				parser : this
 			});
 		});

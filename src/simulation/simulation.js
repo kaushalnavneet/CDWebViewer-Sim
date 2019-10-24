@@ -18,6 +18,8 @@ export default class Simulation extends Evented {
 	get Info() { return this.info; }
 	
 	get State() { return this.state; }
+
+	get Models() { return this.models; }
 	
 	get Selection() { return this.selection; }
 		
@@ -25,9 +27,8 @@ export default class Simulation extends Evented {
 		super();
 		
 		this.frames = [];
-		this.index = {};
 		this.ind = 0;
-		this.models = {};
+		this.models = [];
 		this.state = null;
 		this.palette = null;
 		this.info = null;
@@ -36,9 +37,9 @@ export default class Simulation extends Evented {
 	
 	LoadData(nCache, data) {	
 		this.LoadPalette(data.palette);
-		this.LoadMessages(data.frames);
-		this.LoadInfo(data.messages, data.parser);
-		//console.log(this.models);
+		this.LoadFrames(data.frames);
+		this.LoadInfo(data.parser);
+		this.LoadModels(data.models);
 		this.selection = new Selection();
 		this.cache = new Cache();
 		
@@ -53,15 +54,18 @@ export default class Simulation extends Evented {
 		this.palette = palette;
 	}
 	
-	LoadMessages(frames) {
-		//debugger;
+	LoadFrames(frames) {
 		this.frames = frames;
 	}
+
+	LoadModels(models) {
+		this.models = models;
+	}
 	
-	LoadInfo(messages, parser) {
+	LoadInfo(parser) {
 		this.info = new Info();
 		
-		this.info.Load(this, messages, parser);
+		this.info.Load(this, parser);
 	}
 	
 	BuildDifferences() {		

@@ -3,7 +3,6 @@
 import Lang from '../../utils/lang.js';
 import Array from '../../utils/array.js';
 import Sim from '../../utils/sim.js';
-import Message from '../message.js';
 import Frame from '../frame.js';
 import Parser from "./parser.js";
 import Palette from '../palette.js';
@@ -21,6 +20,9 @@ export default class RISE extends Parser {
 	
 	constructor(fileList) {
 		super(fileList);
+		this.frames = [];
+		this.index = {};
+		this.models = {};
 	}
 	
 	GetFiles (fileList) {		
@@ -47,16 +49,24 @@ export default class RISE extends Parser {
 		return d.promise;
 	}
 	
-	ParseTasks() {		
-		return [this.ParseLogFile()];
+	ParseTasks() {	
+		var defs = [];	
+		
+		defs.push(this.ParseLogFile());
+
+		return defs;
 	}
 	
 	GetPalette() {
 		return new Palette();
 	}
 	
-	GetMessages() {
-		return this.files.log.content;
+	GetFrames() {
+		return this.frames;
+	}
+
+	GetModels() {
+		return this.models;
 	}
 	
 	ParseLogFile() {
@@ -74,10 +84,8 @@ export default class RISE extends Parser {
 		reader.ReadChunk(log.raw).then((ev) => {
 			var idx = ev.result.lastIndexOf('\n');
 			var chunk = ev.result.substr(0, idx);
-			var messages = this.ParseSafeChunk(chunk);
+			this.ParseSafeChunk(chunk);
 			
-			log.content = log.content.concat(messages);
-
 			reader.MoveCursor(chunk.length + 1);
 			
 			this.Emit("Progress", { progress: 100 * reader.position / log.raw.size });
@@ -128,10 +136,20 @@ export default class RISE extends Parser {
 			var idx = split[3].trim();
 			
 			var time = Array.Map(idx.split(":"), function(t) { return +t; });
-			
-			safe.push(new Message(idx, time, coord, v));
-		});
 
-		return safe;
+			var frame = this.index[idx];
+			
+			if (!frame) {
+				frame = new Frame(idx);	
+				this.index[idx] = frame;
+				this.frames.push(frame);
+			}
+
+			frame.AddTransition(model, v);
+	
+			this.models[model]=model;
+
+		}.bind(this));
+
 	}
 }
