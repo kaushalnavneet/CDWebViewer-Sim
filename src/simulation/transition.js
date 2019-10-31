@@ -8,7 +8,11 @@ export default class Transition {
 		this.value = value;
 		this.diff = diff;
 	}
-	
+
+	get Id() {
+		return this.id;
+	}
+
 	get Value() {
 		return this.value;
 	}

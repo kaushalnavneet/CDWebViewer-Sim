@@ -149,9 +149,7 @@ export default class CDpp extends Parser {
 
 			frame.AddTransition(model, v);
 
-
 		}.bind(this));
-		//return data;
 	}
 	
 	ParseLogFile() {

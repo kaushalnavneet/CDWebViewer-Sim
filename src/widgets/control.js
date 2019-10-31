@@ -99,7 +99,6 @@ export default Lang.Templatable("Widget.Control", class Control extends Widget {
 	
 	onConfigParsed_Handler(ev) {
 		this.config = ev.result;
-		console.log(this.parser);
 		
 		this.parser.On("Progress", this.onParserProgress_Handler.bind(this));
 		

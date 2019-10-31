@@ -70,8 +70,18 @@ export default Lang.Templatable("Auto.StateChart", class AutoStateChart extends 
 	
 		Array.ForEach(this.tracked, function(t) {
 			t.total = 0;
-			
-			for (var x = 0; x < state.grid.length; x++) {
+			console.log(state.model);
+			for(var id in state.model){
+				var value = state.model[id];
+												
+				if (t.value == value) t.total++;
+				
+				if (!t.range) continue;
+				
+				if (t.range.min < value && t.range.max >= value) t.total++;
+			}
+
+			/*for (var x = 0; x < state.grid.length; x++) {
 				for (var y = 0; y < state.grid[x].length; y++) {
 					for (var k = 0; k < this.z.length; k++) {
 						var value = state.GetValue(x, y, this.z[k]);
@@ -83,7 +93,7 @@ export default Lang.Templatable("Auto.StateChart", class AutoStateChart extends 
 						if (t.range.min < value && t.range.max >= value) t.total++;
 					}
 				}
-			}
+			}*/
 		}.bind(this));
 		
 		this.Widget.Data(this.tracked);

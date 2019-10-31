@@ -43,7 +43,7 @@ export default class Simulation extends Evented {
 		this.selection = new Selection();
 		this.cache = new Cache();
 		
-		this.cache.Build(nCache, this.frames, this.info.size);
+		this.cache.Build(nCache, this.frames, this.models);
 		
 		this.state = this.cache.First();
 		
@@ -69,7 +69,7 @@ export default class Simulation extends Evented {
 	}
 	
 	BuildDifferences() {		
-		var state = State.Zero(this.info.size);
+		var state = State.Zero(this.models);
 		
 		Array.ForEach(this.frames, function(f) { f.Difference(state); })
 	}

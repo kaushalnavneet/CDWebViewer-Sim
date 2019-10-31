@@ -10,20 +10,21 @@ export default class State {
 	}
 	
 	Clone(){
-		return new State(this.i, Array.Clone(this.model));
+		//return new State(this.i, Array.Clone(this.model));
+		return new State(this.i, this.model);
 	}
 	
-	GetValue(Id) {
-		return this.model[Id];
+	GetValue(id) {
+		return this.model[id];
 	}
 	
-	SetValue(Id, value) {
-		this.model[Id] = value;
+	SetValue(id, value) {
+		this.model[id] = value;
 	}
 	
 	ApplyTransitions(frame) {
 		Array.ForEach(frame.transitions, function(t) {
-			this.SetValue(t.Id, t.Value);
+			this.SetValue(t.id, t.value);
 		}.bind(this));
 		
 		this.i++;
@@ -31,19 +32,21 @@ export default class State {
 	
 	RollbackTransitions(frame) {
 		Array.ForEach(frame.transitions, function(t) {
-			var value = this.GetValue(t.Id) - t.Diff;
+			var value = this.GetValue(t.id) - t.diff;
 			
-			this.SetValue(t.Id, value);
+			this.SetValue(t.id, value);
 		}.bind(this));
 		
 		this.i--;
 	}
 	
-	static Zero(size) {
-		var model = [];
-		for (var i = 0; i < size; i++) {
-			model.push([]);
+	static Zero(models) {
+		var model = models;
+
+		for (var id in model) {
+			model[id] = 0;
 		}
+
 			
 		return new State(-1, model);
 	}
