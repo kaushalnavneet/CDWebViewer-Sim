@@ -70,7 +70,9 @@ export default Lang.Templatable("Auto.Grid", class AutoGrid extends Automated {
 	}
 	
 	onMouseMove_Handler(ev) {
-		var state = this.simulation.state.GetValue(ev.data.x, ev.data.y, this.z);
+		//var state = this.simulation.state.GetValue(ev.data.x, ev.data.y, this.z);
+		var id = ev.data.x + "-" + ev.data.y + "-" + this.z;
+		var state = this.simulation.state.model[id];
 		var subs = [ev.data.x, ev.data.y, this.z, state];
 		
 		this.tooltip.nodes.label.innerHTML = Lang.Nls("Widget_AutoGrid_Tooltip_Title", subs);
@@ -94,7 +96,9 @@ export default Lang.Templatable("Auto.Grid", class AutoGrid extends Automated {
 		else {
 			this.Simulation.Selection.Deselect(ev.data.x, ev.data.y, this.z);
 			
-			var v = this.Simulation.State.GetValue(ev.data.x, ev.data.y, this.z);
+			//var v = this.Simulation.State.GetValue(ev.data.x, ev.data.y, this.z);
+			var id = ev.data.x + "-" + ev.data.y + "-" + this.z;
+			var v = this.simulation.state.model[id];
 			
 			var color = this.Simulation.Palette.GetColor(v);
 		}

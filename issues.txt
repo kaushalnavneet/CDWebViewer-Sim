@@ -1,0 +1,10 @@
+
+
+selection.js file -> make it for common DEVS.
+
+gridLayer:
+all values on hover are undefined.
+values of each cell-states are diffrent from previous version. 100 and now 101.
+
+stateSum:
+frequencies are not proper

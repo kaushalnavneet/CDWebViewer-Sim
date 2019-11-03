@@ -42,7 +42,6 @@ export default class SimulationInfo {
 			this.size = { x:parseInt(t[0]) + 1, y:parseInt(t[1]) + 1, z:parseInt(t[2]) + 1 };
 		}
 		else{
-			//Code has to go here to handle DEVS atomic models
 			this.size = parseInt(t) + 1;
 		}
 

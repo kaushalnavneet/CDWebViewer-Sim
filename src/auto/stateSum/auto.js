@@ -70,7 +70,6 @@ export default Lang.Templatable("Auto.StateChart", class AutoStateChart extends 
 	
 		Array.ForEach(this.tracked, function(t) {
 			t.total = 0;
-			console.log(state.model);
 			for(var id in state.model){
 				var value = state.model[id];
 												
