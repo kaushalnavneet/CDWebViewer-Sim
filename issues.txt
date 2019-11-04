@@ -1,10 +1,17 @@
 
 
-selection.js file -> make it for common DEVS.
+selection.js file -> make it for common DEVS or move inside auto/.
 
 gridLayer:
-all values on hover are undefined.
-values of each cell-states are diffrent from previous version. 100 and now 101.
+all values on hover are undefined. - fixed
+
+values of each cell-states are diffrent from previous version. 100 and now 101. - model overridden issue fixed
 
 stateSum:
-frequencies are not proper
+frequencies are not proper - fixed
+
+gridLayer:
+colors were overridden - fixed
+
+transitionMap:
+not working. 
