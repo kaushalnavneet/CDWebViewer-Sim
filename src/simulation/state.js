@@ -10,15 +10,9 @@ export default class State {
 	}
 	
 	Clone(){
-		return new State(this.i, this.CloneObj(this.model));
-	}
-	
-	CloneObj(obj) {
-		var clone = {};
+		var clone = JSON.parse(JSON.stringify(this.model));
 
-		clone = JSON.parse(JSON.stringify(obj));
-		
-		return clone;
+		return new State(this.i, clone);
 	}
 	
 	GetValue(id) {
