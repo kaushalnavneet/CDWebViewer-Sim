@@ -27,8 +27,8 @@ export default Lang.Templatable("Widget.Info", class Info extends Widget {
 						"<span class='info-value' handle='name'></span>" +
 					"</div>" +
 					"<div class='info-line'>" +
-						"<span class='info-label'>nls(Info_Label_Dimensions)</span>" +
-						"<span class='info-value' handle='dimensions'></span>" +
+						"<span class='info-label'>nls(Info_Label_Size)</span>" +
+						"<span class='info-value' handle='size'></span>" +
 					"</div>" + 
 					"<div class='info-line'>" +
 						"<span class='info-label'>nls(Info_Label_NumberFrames)</span>" +
@@ -45,7 +45,7 @@ export default Lang.Templatable("Widget.Info", class Info extends Widget {
 		this.Node("simulator").innerHTML = "";
 		this.Node("name").innerHTML = "";
 		this.Node("files").innerHTML = "";
-		this.Node("dimensions").innerHTML = "";
+		this.Node("size").innerHTML = "";
 		this.Node("nFrames").innerHTML = "";
 		this.Node("lastFrame").innerHTML = "";
 		
@@ -60,7 +60,7 @@ export default Lang.Templatable("Widget.Info", class Info extends Widget {
 		this.UpdateLine("simulator", info.Simulator);
 		this.UpdateLine("files", info.FilesAsString());
 		this.UpdateLine("name", info.Name);
-		this.UpdateLine("dimensions", info.SizeAsString());
+		this.UpdateLine("size", info.SizeAsString());
 		this.UpdateLine("nFrames", info.NFrames);
 		this.UpdateLine("lastFrame", info.LastFrame);
 	}

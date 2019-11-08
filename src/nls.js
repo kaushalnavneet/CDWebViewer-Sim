@@ -40,8 +40,8 @@ var nls = {
 	"Info_Label_Files" : {
 		"en" : "Files:"
 	},
-	"Info_Label_Dimensions" : {
-		"en" : "Dimensions:"
+	"Info_Label_Size" : {
+		"en" : "Size:"
 	},
 	"Info_Label_Simulator" : {
 		"en" : "Simulator:"

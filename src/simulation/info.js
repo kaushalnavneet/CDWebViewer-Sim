@@ -42,7 +42,7 @@ export default class SimulationInfo {
 			this.size = { x:parseInt(t[0]) + 1, y:parseInt(t[1]) + 1, z:parseInt(t[2]) + 1 };
 		}
 		else{
-			this.size = parseInt(t) + 1;
+			this.size = simulation.ModelLength + 1;
 		}
 
 	}
