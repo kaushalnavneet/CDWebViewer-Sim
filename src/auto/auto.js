@@ -10,6 +10,7 @@ import StateSum from './stateSum/auto.js';
 import StateSumConfig from './stateSum/config.js';
 import TransitionMap from './transitionMap/auto.js';
 import TransitionMapConfig from './transitionMap/config.js';
+import Simulation from '../simulation/simulation.js';
 
 let AUTOS = [{
 		id : "gridLayer",
@@ -33,10 +34,27 @@ let AUTOS = [{
 		configurator : TransitionMapConfig
 	}];
 
+	let AUTOD = [{
+		id : "cellTrack",
+		nls : "Widget_AutoCellTrackChart",
+		definition : CellTrack,
+		configurator : CellTrackConfig
+	}, {
+		id : "stateSum",
+		nls : "Widget_AutoStateChart",
+		definition : StateSum,
+		configurator : StateSumConfig
+	}];
+
 export default class Auto { 
 
 	static Widgets() {
-		return AUTOS;
+		if(document.getElementsByClassName("info-value")[0].innerHTML == 'DEVS'){
+			return AUTOD;
+		}
+		else{
+			return AUTOS;
+		}
 	}
 	
 	static Item(id) {
