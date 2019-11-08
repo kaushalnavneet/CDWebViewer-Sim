@@ -8,7 +8,7 @@ var nls = {
 		"en" : "<a href='http://vs3.sce.carleton.ca/wordpress/' target='_blank'>ARSLab</a>"
 	},
 	"Header_App" : {
-		"en" : "<a href='http://cell-devs.sce.carleton.ca/intranet/webviewer/' target='_blank'>Cell-DEVS Simulation Viewer</a>"
+		"en" : "<a href='http://cell-devs.sce.carleton.ca/intranet/webviewer/' target='_blank'>Simulation Viewer</a>"
 	},
 	"Header_Tutorial" : {
 		"en" : "&#128304; tutorials"
@@ -128,7 +128,7 @@ var nls = {
 		"en" : "Transition Heatmap"		
 	},
 	"Widget_AutoGrid_Tooltip_Title" : {
-		"en" : "The state of cell ({0}, {1}, {2}) is {3}."		
+		"en" : "The state of model ({0}, {1}, {2}) is {3}."		
 	},
 	"Widget_AutoStateChart" : {
 		"en" : "State Frequency Chart"		
@@ -137,10 +137,10 @@ var nls = {
 		"en" : "Transition Chart (Not implemented)"		
 	},
 	"Widget_AutoTransitionMap_Tooltip_Title" : {
-		"en" : "The number of transitions for cell ({0}, {1}, {2}) is {3}."		
+		"en" : "The number of transitions for model ({0}, {1}, {2}) is {3}."		
 	},
 	"Widget_AutoCellTrackChart" : {
-		"en" : "Cell Track Chart"		
+		"en" : "Model Track Chart"		
 	},
 	"StateChart_Title" : {
 		"en" : "State Frequency Chart"		
@@ -152,10 +152,10 @@ var nls = {
 		"en" : "State"		
 	},
 	"StateChart_Tooltip_Title" : {
-		"en" : "At frame {0} there are {1} cells with state {2}."		
+		"en" : "At frame {0} there are {1} models with state {2}."		
 	},
 	"CellTrackChart_Title" : {
-		"en" : "Cell Track Chart"		
+		"en" : "Model Track Chart"		
 	},
 	"CellStateChart_YAxis" : {
 		"en" : "State"		
@@ -170,13 +170,13 @@ var nls = {
 		"en" : "Select tracked states: "		
 	},
 	"CellTrackChart_Tooltip_Title" : {
-		"en" : "At frame {0} the state of cell:"		
+		"en" : "At frame {0} the state of model:"		
 	},
 	"CellTrackChart_Tooltip_Line" : {
 		"en" : "({0}) is {1}"		
 	}, 
 	"CellTrackConfig_Type" : {
-		"en" : "Cell states are continuous or discrete? "
+		"en" : "Model states are continuous or discrete? "
 	},
 	"CellTrackConfig_Type_Discrete" : {
 		"en" : "Continuous"
@@ -185,7 +185,7 @@ var nls = {
 		"en" : "Discrete"
 	},
 	"CellTrackConfig_Selected" : {
-		"en" : "Selected cells (temporary): "
+		"en" : "Selected models (temporary): "
 	},
 	"TransitionMapConfig_Z" : {
 		"en" : "Selected Layer: "
