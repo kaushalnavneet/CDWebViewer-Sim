@@ -127,7 +127,7 @@ export default class RISE extends Parser {
 			// TODO : Does this ever happen?
 			if (c.length < 2) return;
 
-			var coord = { x:parseInt(c[1],10), y:parseInt(c[0],10), z:parseInt(c.length==3 ? c[2] : 0, 10) }
+			var model = parseInt(c[1],10) + "-" + parseInt(c[0],10) + "-" + parseInt(c.length==3 ? c[2] : 0, 10);
 			
 			// Parse state value
 			var v = parseFloat(split[6]);
