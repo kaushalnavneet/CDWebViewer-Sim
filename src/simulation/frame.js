@@ -23,8 +23,8 @@ export default class Frame {
 		this.transitions.push(t);
 	}
 	
-	TransitionById(time) {
-		return this.index[time] || null;
+	TransitionById(id) {
+		return this.index[id] || null;
 	}
 	
 	Transition(i) {

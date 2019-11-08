@@ -93,7 +93,7 @@ export default Lang.Templatable("Auto.CellTrackChart", class AutoCellTrackChart 
 				if (data.max < v) data.max = v; 
 			}.bind(this));
 								
-			data.times.push(f.id);
+			data.times.push(f.time);
 		}.bind(this));
 		
 		this.Widget.Data(data);
@@ -129,7 +129,7 @@ export default Lang.Templatable("Auto.CellTrackChart", class AutoCellTrackChart 
 	
 	UpdateSelected() {
 		this.selected = Array.Map(this.Simulation.Selection.Selected, function(s) {
-			return `${s.x},${s.y},${s.z}`
+			return s;
 		});
 	}
 	
