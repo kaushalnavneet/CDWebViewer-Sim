@@ -44,7 +44,7 @@ export default class CDpp extends Parser {
 			
 		var reader = new ChunkReader();
 		
-		reader.ReadChunk(this.files.log.raw, 200).then((ev) => {
+		reader.ReadChunk(this.files.log.raw, 400).then((ev) => {
 			var isValid = ev.result.indexOf("Mensaje ") >= 0;
 			
 			if (isValid) d.Resolve(this);
