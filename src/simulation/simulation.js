@@ -12,7 +12,7 @@ import Frame from './frame.js';
 export default class Simulation extends Evented { 
 	
 	get Size() { return this.info.Size; }
-	
+
 	get Palette() { return this.palette; }
 	
 	get Info() { return this.info; }
@@ -20,15 +20,27 @@ export default class Simulation extends Evented {
 	get State() { return this.state; }
 
 	get Models() { return this.models; }
-	
+
+	get ModelLength() { return this.modelLength; }
+
 	get Selection() { return this.selection; }
-		
+
+	get StateMaxFrequency() { 
+		if(this.info.Simulator == 'DEVS'){
+			return this.info.Size;
+		}
+		else{
+			return this.info.Size.x * this.info.Size.y; 
+		}
+
+	}
+	
 	constructor() {
 		super();
 		
 		this.frames = [];
-		this.ind = 0;
 		this.models = [];
+		this.modelLength = 0;
 		this.state = null;
 		this.palette = null;
 		this.info = null;
@@ -38,8 +50,8 @@ export default class Simulation extends Evented {
 	LoadData(nCache, data) {	
 		this.LoadPalette(data.palette);
 		this.LoadFrames(data.frames);
-		this.LoadInfo(data.parser);
 		this.LoadModels(data.models);
+		this.LoadInfo(data.parser);
 		this.selection = new Selection();
 		this.cache = new Cache();
 		
@@ -60,6 +72,7 @@ export default class Simulation extends Evented {
 
 	LoadModels(models) {
 		this.models = models;
+		for (var id in this.models) this.modelLength++;
 	}
 	
 	LoadInfo(parser) {

@@ -16,7 +16,7 @@ export default Lang.Templatable("Auto.StateChart", class AutoStateChart extends 
 		
 		this.z = config.z;
 		this.tracked = this.GetTemporaryTracked(config.tracked, simulation.Palette);
-		this.yMax = simulation.Size.x * simulation.Size.y;
+		this.yMax = simulation.StateMaxFrequency;
 		
 		var h1 = this.Widget.On("MouseMove", this.onMouseMove_Handler.bind(this));
 		var h2 = this.Widget.On("MouseOut", this.onMouseOut_Handler.bind(this));
