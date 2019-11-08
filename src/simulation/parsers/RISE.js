@@ -114,8 +114,6 @@ export default class RISE extends Parser {
 			var start = chunk.indexOf('0 / L / Y', start + length);
 		}
 		
-		var safe = [];
-		
 		Array.ForEach(lines, function(line) {
 			var split = line.split("/");
 			
