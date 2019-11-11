@@ -19,7 +19,7 @@ export default Lang.Templatable("Widget.Header", class Header extends Widget {
 					"<div>" +
 						"<a handle='tutorial' href='https://goo.gl/vhQE03' target='_blank'>nls(Header_Tutorial)</a> &emsp;" +
 						"<a handle='sample' href='https://goo.gl/S7agHi' target='_blank'>nls(Header_Sample)</a> &emsp;" +
-						"<a handle='problem' href='mailto:bruno.st-aubin@carleton.ca?Subject=[CellDEVSViewer][alpha]' target='_blank'>nls(Header_Problem)</a>" +
+						"<a handle='problem' href='mailto:bruno.st-aubin@carleton.ca?Subject=[CellDEVSViewer][alpha]' target='_blank'>nls(Header_Problem)</a> &emsp;" +
 					"</div>" +
 				"</div>";
 	}
