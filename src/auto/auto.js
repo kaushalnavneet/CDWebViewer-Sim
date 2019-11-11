@@ -10,7 +10,6 @@ import StateSum from './stateSum/auto.js';
 import StateSumConfig from './stateSum/config.js';
 import TransitionMap from './transitionMap/auto.js';
 import TransitionMapConfig from './transitionMap/config.js';
-import Simulation from '../simulation/simulation.js';
 
 let AUTOS = [{
 		id : "gridLayer",
