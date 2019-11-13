@@ -107,8 +107,7 @@ input[type=number] {
 input, select {
     border-radius: 4px;
     border: none;
-    font-size: 1.1em;
-	
+    font-size: 1.1em;	
     line-height: 23px;
     height: 23px;
     padding: 2px;
@@ -257,13 +256,18 @@ button.collapse {
     cursor: pointer;
     text-align: center;
     font-family: var(--f-body);
+    font-size: 9.5pt;
     text-shadow: 0px 1px 1px rgba(50, 50, 50, 1);
     display: block;
   }
 
-  .themes span:hover {background-color: #f1f1f1}
+  .themes span:hover {
+      background-color: var(--color-1);
+  }
 
-  .show {display: block;}
+  .show {
+      display: block;
+  }
 
   .theme-selector:hover .themes {
     display: block;
